@@ -31,7 +31,7 @@ window.Shelter = {
                                         <br>
 
                                         <div class="product-option-shop">
-                                            <button type="button">I want to adopt this dog!</button>
+                                            <button class="open-button" onclick="Shelter.openForm()">I want to adopt this dog!</button>
                                         </div>
                                     </div>
                                 </div>`
@@ -43,6 +43,14 @@ window.Shelter = {
         dogs.forEach(item => dogsHTML += Shelter.getDogHtml(item));
 
         $('#products-container').html(dogsHTML);
+    },
+
+    openForm: function() {
+      document.getElementById("myForm").style.display = "block";
+    },
+
+    closeForm: function() {
+      document.getElementById("myForm").style.display = "none";
     }
 };
 
