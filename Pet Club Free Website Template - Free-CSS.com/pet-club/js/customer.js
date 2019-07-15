@@ -38,9 +38,40 @@ window.Customer = {
         $('#customer-container').html(customersHTML);
     },
 
-    createCustomer: function(){
+    add: function(customer) {
+            $.ajax({
+                url: API_URL + "/customers",
+                method: "GET"
+            }).done(function (response) {
+                if (response.success) {
+                    CustomerLocalActions.add(customer);
+                }
+            });
+        },
 
-    }
+    bindEvents: function() {
+                $(".form-container").submit(function() {
+                const customer = {
+                    firstName: $('input[name=firstName]').val(),
+                    lastName: $('input[name=lastName]').val(),
+                    ssn: $('input[name=ssn]').val()
+                };
+                Customer.add(customer);
+         });
+         }
 };
 
+window.CustomerLocalActions = {
+    load: (customers) => {
+        // save in persons as global variable
+        window.customers = customers;
+    },
+    // ES6 functions (one param - no need pharanteses for arguments)
+    add: customer => {
+        customer.id = new Date().getTime();
+        customer.push(customer);
+    },
+}
+
+Customer.bindEvents();
 Customer.getCustomers();
