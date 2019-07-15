@@ -100,9 +100,10 @@ window.Customer = {
                data: JSON.stringify(customer)
             }).done(function (response) {
                 if (response.success) {
-//                    CustomerLocalActions.add(customer);
+//                    CustomerLocalActions.add(customer)
                 }
             });
+            Shelter.closeForm();
         },
 
     bindEvents: function() {
