@@ -31,7 +31,7 @@ window.Shelter = {
                                         <br>
 
                                         <div class="product-option-shop">
-                                            <button class="open-button" onclick="Shelter.openForm()">I want to adopt this dog!</button>
+                                            <button class="open-button" data-dog_id="${dog.id}" data-dog_wasAdopted="${dog.wasAdopted}" onclick="Shelter.openForm()">I want to adopt this dog!</button>
                                         </div>
                                     </div>
                                 </div>`
@@ -46,12 +46,17 @@ window.Shelter = {
     },
 
     openForm: function() {
+        let wasAdopted = $(this).data('dog_wasAdopted');
+        if (wasAdopted === true)
+        {
+            return;
+        }
       document.getElementById("myForm").style.display = "block";
     },
 
     closeForm: function() {
       document.getElementById("myForm").style.display = "none";
-    }
+    },
 };
 
 window.Customer = {
